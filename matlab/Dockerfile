@@ -227,6 +227,14 @@ COPY build/config/matlab.prf     ${HOME}/.matlab/${MATLAB_RELEASE}/
 # By adding this configuration file we turn off the screensaver for the VNC session by default.
 COPY build/config/xscreensaver   ${HOME}/.xscreensaver
 
+# Add example hello world shell script
+RUN echo -e '#!/bin/bash\necho "Hello from Mock MCP Serve"' > ${HOME}/Documents/hello.sh \
+    && chmod +x ${HOME}/Documents/hello.sh
+
+# Copy the Go binary batch-mcp into the container and set it executable
+COPY build/batch-mcp-linux-amd ${HOME}/Documents/batch-mcp-linux-amd64
+# RUN chmod +x ${HOME}/Documents/batch-mcp-linux-amd64
+
 RUN sudo chown -R matlab:matlab ${HOME} \
     && chmod +x  ${HOME}/.vnc/xstartup \
     && chmod u+w ${HOME}/Desktop/MATLAB.desktop \

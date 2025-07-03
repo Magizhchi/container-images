@@ -231,6 +231,11 @@ startContainer() {
         printMessage browser_readme
         eval exec "matlab-proxy-app ${CUSTOM_COMMAND}"
 
+    # In MCP mode, run the hello world shell script
+    elif [ "${MCP}" = true ]; then
+        cd ~/Documents/ || exit 1
+        exec ./batch-mcp-linux-amd64 -t http
+
     # Otherwise, run MATLAB
     else
 

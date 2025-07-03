@@ -24,6 +24,10 @@ while [ $# -gt 0 ]; do
         BROWSER=true
         modes=$((modes + 1))
         ;;
+    -mcp)
+        MCP=true
+        modes=$((modes + 1))
+        ;;
     *)
         CUSTOM_COMMAND="${CUSTOM_COMMAND} $(build_cmd "$1")"
         ;;
