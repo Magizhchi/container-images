@@ -117,7 +117,7 @@ group "all" {
 
 # Target for mathworks/matlab
 target "matlab" {
-  context = "."
+  context = "./matlab"
   dockerfile = "Dockerfile"
   target = "matlab"
   args = common_args
@@ -127,7 +127,7 @@ target "matlab" {
 
 # Target for mathworks/matlab-deep-learning
 target "matlab-deep-learning" {
-  context = "."
+  context = "./matlab"
   dockerfile = "Dockerfile"
   target = "matlab-deep-learning"
   tags = tags("${"matlab-deep-learning"}", "${MATLAB_RELEASE}")

@@ -1,2 +1,5 @@
+
 __pycache__
 **/*.pyc
+# Ignore MATLAB MCP Go binary in Docker build context
+matlab/build/batch-mcp-linux-amd64

@@ -232,7 +232,7 @@ RUN echo -e '#!/bin/bash\necho "Hello from Mock MCP Serve"' > ${HOME}/Documents/
     && chmod +x ${HOME}/Documents/hello.sh
 
 # Copy the Go binary batch-mcp into the container and set it executable
-COPY build/batch-mcp-linux-amd ${HOME}/Documents/batch-mcp-linux-amd64
+COPY build/batch-mcp-linux-amd64 ${HOME}/Documents/batch-mcp-linux-amd64
 # RUN chmod +x ${HOME}/Documents/batch-mcp-linux-amd64
 
 RUN sudo chown -R matlab:matlab ${HOME} \
