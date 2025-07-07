@@ -94,7 +94,7 @@ func TestMATLABServer_executeMATLAB(t *testing.T) {
 			code:        "pause(2); disp('done')",
 			timeout:     1 * time.Second,
 			expectError: true,
-			contains:    "timeout",
+			contains:    "timed out",
 		},
 		{
 			name:        "syntax error",
@@ -117,8 +117,18 @@ func TestMATLABServer_executeMATLAB(t *testing.T) {
 				t.Errorf("executeMATLAB() unexpected error: %v", err)
 			}
 
-			if tt.contains != "" && !strings.Contains(output, tt.contains) {
-				t.Errorf("executeMATLAB() output = %v, expected to contain %v", output, tt.contains)
+			if tt.contains != "" {
+				if tt.expectError && err != nil {
+					// For error cases, check the error message
+					if !strings.Contains(err.Error(), tt.contains) {
+						t.Errorf("executeMATLAB() error = %v, expected to contain %v", err.Error(), tt.contains)
+					}
+				} else {
+					// For success cases, check the output
+					if !strings.Contains(output, tt.contains) {
+						t.Errorf("executeMATLAB() output = %v, expected to contain %v", output, tt.contains)
+					}
+				}
 			}
 
 			t.Logf("Code: %s", tt.code)

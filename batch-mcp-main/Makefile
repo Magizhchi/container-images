@@ -1,4 +1,4 @@
-.PHONY: build dist test clean help
+.PHONY: build build-linux-amd64 dist test clean help
 
 
 # Go project variables
